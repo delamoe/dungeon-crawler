@@ -1,10 +1,15 @@
-var path = require('path');
+const path = require('path');
 const webpack = require("webpack");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 	entry: './src/index.js',
   plugins: [
-    new webpack.HotModuleReplacementPlugin() // Enable HMR
+    new webpack.HotModuleReplacementPlugin(), // Enable HMR
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+      inject: 'body',
+    }),
     ],
 	output: {
 		filename: 'bundle.js',
@@ -34,5 +39,5 @@ module.exports = {
     hot: true, // Tell the dev-server we"re using HMR
     contentBase: path.resolve(__dirname, "dist"),
     publicPath: "/"
-  }
+  },
 };
